@@ -27,6 +27,8 @@ group :development do
   gem "hpricot", ">= 0.8.6"
   gem "ruby_parser", ">= 2.3.1"
   gem "rspec-rails", ">= 2.11.0" 
+
+  gem 'pry'
 end
 
 group :test do
@@ -43,6 +45,7 @@ group :test do
   gem 'guard-cucumber'
   gem 'guard-livereload'
   gem 'guard-spork'
+  gem 'pry'
 end
 
 
