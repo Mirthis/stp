@@ -41,4 +41,56 @@ describe ItemsController do
       end
     end
   end 
+
+  describe "GET 'show'" do
+    before { @item = FactoryGirl.create(:item) }
+    
+    it "returns http success" do
+      get :show, :id => @item.id
+      response.should be_success
+    end
+
+    it "should find the right post" do
+      get :show, :id => @item.id
+      assigns(:item).should == @item
+    end
+  end
+
+  describe "get 'edit'" do
+   before { @item = FactoryGirl.create(:item) }
+    
+    it "returns http success" do
+      get :edit, :id => @item.id
+      response.should be_success
+    end
+  end
+
+  describe "POST 'update'" do
+    before { @item = FactoryGirl.create(:item) }
+
+    describe "failure" do
+      before { @attr = {title: ""} }
+
+      it "should render the edit page" do
+        put :update, :id => @item, :post => @attr
+        response.should render_template('edit')
+      end
+    end
+
+    describe "success" do
+      before { @attr = {title: "test", description: "test"} }
+
+      it "should update the article" do
+        put :update, :id => @item, :post => @attr
+        @item.reload
+        @item.title.should == @attr[:title]
+        @item.description.should == @attr[:description]
+      end
+
+      it "should show a flash message" do
+        put :update, :id => @item, :post => @attr
+        flash[:success].should =~ /updated/
+      end
+    end
+  end
 end

@@ -30,4 +30,20 @@ describe Item do
       long_title_item.should_not be_valid    
     end
   end
+
+  describe "picture association" do
+    before(:each) do
+      @item = Item.create!(@attr)
+      @pic1 = @item.pictures.create
+      @pic2 = @item.pictures.create
+    end
+
+    it "should have a pictures attribute" do
+      @item.should respond_to(:pictures)
+    end
+
+    it "should have the correct pictures" do
+      @item.pictures.should == [@pic1, @pic2]
+    end
+  end
 end

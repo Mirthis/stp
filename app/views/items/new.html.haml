@@ -1,6 +1,2 @@
 %h2 Create a New Item
-= simple_form_for(@item, :html => {:class => 'form-vertical' }) do |f|
-  = f.error_notification
-  = f.input :title, :autofocus => true
-  = f.input :description
-  = f.button :submit, 'Create Item', :class => 'btn-primary'
+= render 'form'

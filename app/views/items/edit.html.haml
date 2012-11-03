@@ -1,0 +1,20 @@
+%h2 Edit item
+= simple_form_for(@item, html: {class: 'form-vertical', multipart: true }) do |f|
+  = f.error_notification
+  = f.input :title, :autofocus => true
+  = f.input :description
+  %h4 New Files
+  = f.fields_for :pictures do |picture_fields|
+    = ""
+    - if picture_fields.object.new_record?
+      %p= picture_fields.input :picture
+  
+  %h4 Old Files
+
+  = f.fields_for :pictures do |picture_fields|
+    - unless picture_fields.object.new_record?
+      .thumb
+        = link_to image_tag(picture_fields.object.picture.url(:thumb)), picture_fields.object.picture.url(:original)
+        = picture_fields.check_box :_destroy       
+  
+  = f.button :submit, 'Create Item', :class => 'btn-primary'

@@ -9,6 +9,7 @@ gem "rolify", ">= 3.2.0"
 gem "simple_form", ">= 2.0.4"
 gem 'jquery-rails'
 gem "haml", ">= 3.1.7"
+gem "paperclip"
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

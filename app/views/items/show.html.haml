@@ -1,2 +1,5 @@
 %h3=@item.title
 %h3=@item.description
+.thumb
+  - for picture in @item.pictures
+    = link_to image_tag(picture.picture.url(:thumb)), picture.picture.url(:original)
