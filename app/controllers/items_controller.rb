@@ -22,7 +22,7 @@ class ItemsController < ApplicationController
 
   def update
     @item = Item.find(params[:id])
-
+    binding.pry
     if @item.update_attributes(params[:item])
       redirect_to @item, :flash => { :success => "Item updated" }
     else
