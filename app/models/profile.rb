@@ -1,7 +1,8 @@
 class Profile < ActiveRecord::Base
   attr_accessible :bio, :birth_date, :first_name, :last_name, :gender
+  belongs_to :user
 
-  validates_presence_of :first_name, :last_name, :gender, :birth_date
+  validates_presence_of :first_name, :last_name, :gender, :birth_date, :user
 
   validates :first_name, :length   => { :in => 2..30 }
   validates :last_name, :length => { :in => 2..30 }

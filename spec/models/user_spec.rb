@@ -97,7 +97,26 @@ describe User do
     it "should set the encrypted password attribute" do
       @user.encrypted_password.should_not be_blank
     end
-
   end
 
+  describe 'profile association' do
+
+      before(:each) do
+        @user = User.new(@attr)
+        @profile = FactoryGirl.create(:profile, :user => @user)
+        # @user.build_profile(FactoryGirl.attributes_for(:profile))
+        @user.save
+      end
+
+      it "should have a profile attribute" do
+        @user.should respond_to(:profile)
+      end
+
+      it "should destroy associated profile" do
+        @user.destroy
+        lambda do
+          Profile.find(@profile)
+        end.should raise_error(ActiveRecord::RecordNotFound)
+      end
+    end
 end

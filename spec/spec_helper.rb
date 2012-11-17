@@ -15,6 +15,11 @@ Spork.prefork do
   require 'email_spec'
   require 'rspec/autorun'
 
+  require "rails/application"
+  Spork.trap_method(Rails::Application, :reload_routes!)
+  
+  require File.dirname(__FILE__) + "/../config/environment.rb"
+
   # Requires supporting ruby files with custom matchers and macros, etc,
   # in spec/support/ and its subdirectories.
   Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
